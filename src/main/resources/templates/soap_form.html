@@ -1,45 +1,72 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>MNB SOAP – Exchange Rate Query</title>
+    <title>SOAP – Exchange Rate Query</title>
 
     <link rel="stylesheet" th:href="@{/css/bootstrap-5.0.0-alpha-2.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/LineIcons.2.0.css}" />
+    <link rel="stylesheet" th:href="@{/css/animate.css}" />
+    <link rel="stylesheet" th:href="@{/css/lindy-uikit.css}" />
 </head>
 
 <body>
-<header class="header header-2" style="padding: 20px 0;">
-    <div class="container">
-        <h2>MNB SOAP – Exchange Rate Query</h2>
+
+<!-- NAVBAR -->
+<header class="header header-2">
+    <div class="navbar-area">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg">
+                <a class="navbar-brand" href="/">
+                    <img th:src="@{/images/logo/logo.svg}" alt="Logo">
+                </a>
+                <button class="navbar-toggler" type="button"
+                        data-toggle="collapse" data-target="#navbarSupportedContent2">
+                    <span class="toggler-icon"></span>
+                    <span class="toggler-icon"></span>
+                    <span class="toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent2">
+                    <ul id="nav2" class="navbar-nav ml-auto">
+                        <li class="nav-item"><a href="/" class="page-scroll">Home</a></li>
+                        <li class="nav-item"><a href="/soap" class="page-scroll">SOAP</a></li>
+                        <li class="nav-item"><a href="/forex-account" class="page-scroll">Forex Account</a></li>
+                        <li class="nav-item"><a href="/forex-actual" class="page-scroll">Forex ActPrice</a></li>
+                        <li class="nav-item"><a href="/forex-history" class="page-scroll">Forex HistPrice</a></li>
+                        <li class="nav-item"><a href="/forex-open" class="page-scroll">Forex Open</a></li>
+                        <li class="nav-item"><a href="/forex-positions" class="page-scroll">Forex Positions</a></li>
+                        <li class="nav-item"><a href="/forex-close" class="page-scroll">Forex Close</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
     </div>
 </header>
 
-<div class="container mt-4">
+<!-- FORM SECTION -->
+<div class="container mt-5">
+    <h2>SOAP – Exchange Rate Query</h2>
 
-    <form th:action="@{/soap/result}" method="post">
+    <form th:action="@{/soap/result}" method="post" class="mt-4">
 
-        <!-- Currency -->
         <div class="mb-3">
-            <label for="currency">Currency (e.g. EUR, USD)</label>
+            <label for="currency">Currency (e.g. EUR)</label>
             <input type="text" id="currency" name="currency" class="form-control" required>
         </div>
 
-        <!-- Start Date -->
         <div class="mb-3">
             <label for="startDate">Start Date (YYYY-MM-DD)</label>
             <input type="text" id="startDate" name="startDate" class="form-control" required>
         </div>
 
-        <!-- End Date -->
         <div class="mb-3">
             <label for="endDate">End Date (YYYY-MM-DD)</label>
             <input type="text" id="endDate" name="endDate" class="form-control" required>
         </div>
 
         <button class="btn btn-primary">Get Exchange Rates</button>
-
     </form>
-
 </div>
 
 </body>

@@ -1,24 +1,55 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>MNB SOAP Result</title>
+    <title>SOAP Result</title>
 
     <link rel="stylesheet" th:href="@{/css/bootstrap-5.0.0-alpha-2.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/LineIcons.2.0.css}" />
+    <link rel="stylesheet" th:href="@{/css/animate.css}" />
+    <link rel="stylesheet" th:href="@{/css/lindy-uikit.css}" />
 </head>
 
 <body>
 
-<header class="header header-2" style="padding: 20px 0;">
-    <div class="container">
-        <h2>Exchange Rates Result</h2>
+<!-- NAVBAR -->
+<header class="header header-2">
+    <div class="navbar-area">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg">
+                <a class="navbar-brand" href="/">
+                    <img th:src="@{/images/logo/logo.svg}" alt="Logo">
+                </a>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent2">
+                    <span class="toggler-icon"></span><span class="toggler-icon"></span><span class="toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent2">
+                    <ul id="nav2" class="navbar-nav ml-auto">
+                        <li class="nav-item"><a href="/" class="page-scroll">Home</a></li>
+                        <li class="nav-item"><a href="/soap" class="page-scroll">SOAP</a></li>
+                        <li class="nav-item"><a href="/forex-account" class="page-scroll">Forex Account</a></li>
+                        <li class="nav-item"><a href="/forex-actual" class="page-scroll">Forex ActPrice</a></li>
+                        <li class="nav-item"><a href="/forex-history" class="page-scroll">Forex HistPrice</a></li>
+                        <li class="nav-item"><a href="/forex-open" class="page-scroll">Forex Open</a></li>
+                        <li class="nav-item"><a href="/forex-positions" class="page-scroll">Forex Positions</a></li>
+                        <li class="nav-item"><a href="/forex-close" class="page-scroll">Forex Close</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
     </div>
 </header>
 
-<div class="container mt-4">
+<div class="container mt-5">
+
+    <h2>SOAP Result</h2>
 
     <p><strong>Currency:</strong> <span th:text="${currency}"></span></p>
-    <p><strong>Date Range:</strong> <span th:text="${startDate}"></span> to <span th:text="${endDate}"></span></p>
+    <p><strong>Date Range:</strong>
+        <span th:text="${startDate}"></span> – <span th:text="${endDate}"></span>
+    </p>
 
     <table class="table table-bordered mt-4">
         <thead>
@@ -34,8 +65,6 @@
         </tr>
         </tbody>
     </table>
-
-    <a th:href="@{/soap}" class="btn btn-secondary mt-3">New Query</a>
 
 </div>
 

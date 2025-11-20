@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Forex Account</title>
+    <title>Forex Actual Price</title>
 
     <link rel="stylesheet" th:href="@{/css/bootstrap-5.0.0-alpha-2.min.css}" />
     <link rel="stylesheet" th:href="@{/css/LineIcons.2.0.css}" />
@@ -44,16 +44,28 @@
 
 <div class="container mt-5">
 
-    <h2>Forex Account Information</h2>
+    <h2>Forex Actual Price</h2>
 
-    <table class="table table-bordered mt-4">
-        <tr><th>Account ID</th><td th:text="${accountId}"></td></tr>
-        <tr><th>Balance</th><td th:text="${balance}"></td></tr>
-        <tr><th>Currency</th><td th:text="${currency}"></td></tr>
-        <tr><th>Open Trades</th><td th:text="${openTrades}"></td></tr>
-        <tr><th>Margin Available</th><td th:text="${marginAvailable}"></td></tr>
-        <tr><th>NAV</th><td th:text="${nav}"></td></tr>
-    </table>
+    <form method="post" th:action="@{/forex-actual}" class="mt-4">
+
+        <div class="mb-3">
+            <label>Instrument (e.g. EUR_USD)</label>
+            <input type="text" name="instrument" class="form-control" required>
+        </div>
+
+        <button class="btn btn-primary">Get Price</button>
+    </form>
+
+    <hr>
+
+    <div th:if="${instrument}">
+        <table class="table table-bordered mt-4">
+            <tr><th>Instrument</th><td th:text="${instrument}"></td></tr>
+            <tr><th>Bid</th><td th:text="${bid}"></td></tr>
+            <tr><th>Ask</th><td th:text="${ask}"></td></tr>
+            <tr><th>Time</th><td th:text="${time}"></td></tr>
+        </table>
+    </div>
 
 </div>
 
