@@ -6,10 +6,10 @@ import java.util.List;
 
 public class ForexService {
 
-    // No real token needed because we simulate the results
+    // No real token needed because we simulate all results
     public static final String TOKEN = "DEMO_TOKEN_NOT_REQUIRED";
 
-    // Your demo account ID (does not affect logic)
+    // Demo account ID (not used in simulation but needed for UI display)
     public static final String ACCOUNT = "62630935";
 
     // =====================================================
@@ -63,7 +63,7 @@ public class ForexService {
 
         List<HistoricalPrice> list = new ArrayList<>();
 
-        // Simulated candles (5 historical days)
+        // Simulated sample candles
         list.add(new HistoricalPrice("2025-01-01", 1.0801, 1.0803));
         list.add(new HistoricalPrice("2025-01-02", 1.0810, 1.0812));
         list.add(new HistoricalPrice("2025-01-03", 1.0832, 1.0834));
@@ -71,6 +71,19 @@ public class ForexService {
         list.add(new HistoricalPrice("2025-01-05", 1.0825, 1.0827));
 
         return list;
+    }
+
+
+    // =====================================================
+    // TASK 7: OPEN FOREX POSITION (Simulated JSON)
+    // =====================================================
+    public static OpenPosition openPosition(String instrument, int units) {
+
+        // Simulated opening price + fake trade ID
+        double price = 1.08512;
+        int tradeId = 12345;
+
+        return new OpenPosition(instrument, units, price, tradeId);
     }
 
 }
