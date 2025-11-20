@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Forex Historical Price</title>
+
+    <link rel="stylesheet" th:href="@{/css/bootstrap-5.0.0-alpha-2.min.css}" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header class="header header-2">
+    <div class="navbar-area">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg">
+                <a class="navbar-brand" href="/">
+                    <img th:src="@{/images/logo/logo.svg}" alt="Logo">
+                </a>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent2">
+                    <span class="toggler-icon"></span><span class="toggler-icon"></span><span class="toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent2">
+                    <ul id="nav2" class="navbar-nav ml-auto">
+                        <li class="nav-item"><a href="/" class="page-scroll">Home</a></li>
+                        <li class="nav-item"><a href="/soap" class="page-scroll">SOAP</a></li>
+                        <li class="nav-item"><a href="/forex-account" class="page-scroll">Forex Account</a></li>
+                        <li class="nav-item"><a href="/forex-actual" class="page-scroll">Forex ActPrice</a></li>
+                        <li class="nav-item"><a href="/forex-history" class="page-scroll">Forex HistPrice</a></li>
+                        <li class="nav-item"><a href="/forex-open" class="page-scroll">Forex Open</a></li>
+                        <li class="nav-item"><a href="/forex-positions" class="page-scroll">Forex Positions</a></li>
+                        <li class="nav-item"><a href="/forex-close" class="page-scroll">Forex Close</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<div class="container mt-5">
+
+    <h2>Forex Historical Price</h2>
+
+    <form method="post" th:action="@{/forex-history}" class="mt-4">
+
+        <div class="mb-3">
+            <label>Instrument (e.g. EUR_USD)</label>
+            <input name="instrument" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label>From (YYYY-MM-DD)</label>
+            <input name="from" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label>To (YYYY-MM-DD)</label>
+            <input name="to" class="form-control" required>
+        </div>
+
+        <button class="btn btn-primary">Get History</button>
+    </form>
+
+    <hr>
+
+    <!-- Chart -->
+    <div th:if="${list}">
+        <h4>
+            <span th:text="${instrument}"></span> Price Chart
+            (<span th:text="${from}"></span> – <span th:text="${to}"></span>)
+        </h4>
+
+        <canvas id="historyChart" height="120"></canvas>
+
+        <script>
+            const labels = [[${times}]];
+            const bidData = [[${bids}]];
+            const askData = [[${asks}]];
+
+            new Chart(document.getElementById('historyChart'), {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'Bid',
+                            data: bidData,
+                            borderColor: 'blue',
+                            fill: false
+                        },
+                        {
+                            label: 'Ask',
+                            data: askData,
+                            borderColor: 'red',
+                            fill: false
+                        }
+                    ]
+                }
+            });
+        </script>
+
+        <!-- Table -->
+        <table class="table table-bordered mt-4">
+            <thead>
+            <tr>
+                <th>Date</th>
+                <th>Bid</th>
+                <th>Ask</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="row : ${list}">
+                <td th:text="${row.time}"></td>
+                <td th:text="${row.bid}"></td>
+                <td th:text="${row.ask}"></td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+</body>
+</html>
