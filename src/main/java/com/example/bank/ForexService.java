@@ -85,5 +85,20 @@ public class ForexService {
 
         return new OpenPosition(instrument, units, price, tradeId);
     }
+    // =====================================================
+// TASK 8: LIST OPEN TRADES (Simulated JSON List)
+// =====================================================
+    public static List<OpenTrade> getOpenPositions() {
+
+        List<OpenTrade> list = new ArrayList<>();
+
+        // Simulated open positions
+        list.add(new OpenTrade(12345, "EUR_USD", 1000, 1.08512));
+        list.add(new OpenTrade(67890, "GBP_USD", -500, 1.26450));
+        list.add(new OpenTrade(11223, "USD_JPY", 2000, 149.550));
+
+        return list;
+    }
+
 
 }
