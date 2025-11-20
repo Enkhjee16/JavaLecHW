@@ -2,12 +2,11 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Open Forex Position</title>
+    <title>Close Forex Position</title>
 
-    <link rel="stylesheet" th:href="@{/css/bootstrap-5.0.0-alpha-2.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/bootstrap-5.0.0-alpha-2.min.css}"/>
     <link rel="stylesheet" th:href="@{/css/fix-navbar.css}">
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -20,13 +19,18 @@
                 <a class="navbar-brand" href="/">
                     <img th:src="@{/images/logo/logo.svg}" alt="Logo">
                 </a>
+
                 <button class="navbar-toggler" type="button"
                         data-toggle="collapse" data-target="#navbarSupportedContent2">
-                    <span class="toggler-icon"></span><span class="toggler-icon"></span><span class="toggler-icon"></span>
+                    <span class="toggler-icon"></span>
+                    <span class="toggler-icon"></span>
+                    <span class="toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent2">
+                <div class="collapse navbar-collapse sub-menu-bar"
+                     id="navbarSupportedContent2">
                     <ul id="nav2" class="navbar-nav ml-auto">
+
                         <li class="nav-item"><a href="/" class="page-scroll">Home</a></li>
                         <li class="nav-item"><a href="/soap" class="page-scroll">SOAP</a></li>
                         <li class="nav-item"><a href="/forex-account" class="page-scroll">Forex Account</a></li>
@@ -35,6 +39,7 @@
                         <li class="nav-item"><a href="/forex-open" class="page-scroll">Forex Open</a></li>
                         <li class="nav-item"><a href="/forex-positions" class="page-scroll">Forex Positions</a></li>
                         <li class="nav-item"><a href="/forex-close" class="page-scroll">Forex Close</a></li>
+
                     </ul>
                 </div>
             </nav>
@@ -44,33 +49,34 @@
 
 <div class="container mt-5">
 
-    <h2>Open Forex Position</h2>
+    <h2>Close Forex Position</h2>
 
-    <form method="post" th:action="@{/forex-open}" class="mt-4">
-
-        <div class="mb-3">
-            <label>Instrument (e.g. EUR_USD)</label>
-            <input name="instrument" class="form-control" required>
-        </div>
+    <form method="post" th:action="@{/forex-close}" class="mt-4">
 
         <div class="mb-3">
-            <label>Units (positive = BUY, negative = SELL)</label>
-            <input name="units" type="number" class="form-control" required>
+            <label>Select Trade to Close</label>
+
+            <select name="tradeId" class="form-control" required>
+                <option th:each="t : ${trades}"
+                        th:value="${t.tradeId}"
+                        th:text="'Trade ' + ${t.tradeId} + ' – ' + ${t.instrument} + ' (' + ${t.units} + ' units)'">
+                </option>
+            </select>
         </div>
 
-        <button class="btn btn-primary">Open Position</button>
+        <button class="btn btn-danger">Close Position</button>
+
     </form>
 
     <hr>
 
     <div th:if="${tradeId}">
-        <h4>Trade Opened Successfully!</h4>
+        <h4>Trade Closed Successfully</h4>
 
         <table class="table table-bordered mt-3">
-            <tr><th>Instrument</th><td th:text="${instrument}"></td></tr>
-            <tr><th>Units</th><td th:text="${units}"></td></tr>
-            <tr><th>Price</th><td th:text="${price}"></td></tr>
             <tr><th>Trade ID</th><td th:text="${tradeId}"></td></tr>
+            <tr><th>Status</th><td th:text="${status}"></td></tr>
+            <tr><th>Closing Price</th><td th:text="${closePrice}"></td></tr>
         </table>
     </div>
 

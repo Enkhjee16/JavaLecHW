@@ -86,8 +86,8 @@ public class ForexService {
         return new OpenPosition(instrument, units, price, tradeId);
     }
     // =====================================================
-// TASK 8: LIST OPEN TRADES (Simulated JSON List)
-// =====================================================
+    // TASK 8: LIST OPEN TRADES (Simulated JSON List)
+    // =====================================================
     public static List<OpenTrade> getOpenPositions() {
 
         List<OpenTrade> list = new ArrayList<>();
@@ -98,6 +98,17 @@ public class ForexService {
         list.add(new OpenTrade(11223, "USD_JPY", 2000, 149.550));
 
         return list;
+    }
+    // =====================================================
+    // TASK 9: CLOSE FOREX POSITION (Simulated JSON)
+    // =====================================================
+    public static ClosePosition closePosition(int tradeId) {
+
+        // Simulated closing data
+        double closePrice = 1.08600; // simulated closing price
+        String status = "Trade closed successfully";
+
+        return new ClosePosition(tradeId, status, closePrice);
     }
 
 

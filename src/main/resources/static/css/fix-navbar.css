@@ -1,0 +1,26 @@
+/* Fix navbar spacing for Flat theme */
+.navbar-nav .nav-item {
+    margin-left: 22px;
+}
+
+/* Fix the right side top bar crowding */
+.navbar-nav a {
+    padding: 8px 10px;
+    font-size: 16px;
+    display: inline-block;
+}
+
+/* Fix navbar toggler (Bootstrap 5 compatibility) */
+.navbar-toggler {
+    border: none;
+}
+
+.navbar-toggler:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+/* Prevent navbar text sticking to top */
+.header-2 .navbar-area {
+    padding-top: 20px;
+}
